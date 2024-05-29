@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Twilio Numbers</title>
+</head>
+<body>
+    <button id="getNumbers">Get Numbers</button>
+    <table id="numbers">
+        <tr>
+            <th>Number</th>
+            <th>Action</th>
+        </tr>
+    </table>
+    <script>
+    document.getElementById('getNumbers').addEventListener('click', function() {
+        fetch('/get_numbers')
+            .then(response => response.json())
+            .then(data => {
+                const table = document.getElementById('numbers');
+                // Clear the table
+                table.innerHTML = '<tr><th>Number</th><th>Action</th></tr>';
+                // Add each number to the table
+                data.forEach(number => {
+                    const row = document.createElement('tr');
+                    const numberCell = document.createElement('td');
+                    numberCell.textContent = number;
+                    row.appendChild(numberCell);
+                    const actionCell = document.createElement('td');
+                    const selectButton = document.createElement('button');
+                    selectButton.textContent = 'Select';
+                    selectButton.addEventListener('click', function() {
+                        alert(`Continue with ${number}?`);
+                    });
+                    actionCell.appendChild(selectButton);
+                    row.appendChild(actionCell);
+                    table.appendChild(row);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    });
+    </script>
+</body>
+</html>
