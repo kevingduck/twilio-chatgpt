@@ -2,10 +2,42 @@
 <html>
 
 <head>
-    <title>Twilio Numbers</title>
+    <title>Launch an AI Phone Number in Seconds | Talk to a Customizable AI Right Now</title>
     <style>
-        /* The Modal (background) */
+        /* Add some basic styling to make it look like an app */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        .button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #3e8e41;
+        }
         .modal {
+            /* Modal styling */
             display: none; /* Hidden by default */
             position: fixed; /* Stay in place */
             z-index: 1; /* Sit on top */
@@ -17,24 +49,20 @@
             background-color: rgb(0,0,0); /* Fallback color */
             background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
         }
-
-        /* Modal Content/Box */
         .modal-content {
+            /* Modal content styling */
             background-color: #fefefe;
             margin: 15% auto; /* 15% from the top and centered */
             padding: 20px;
             border: 1px solid #888;
             width: 80%; /* Could be more or less, depending on screen size */
         }
-
-        /* The Close Button */
         .close {
             color: #aaa;
             float: right;
             font-size: 28px;
             font-weight: bold;
         }
-
         .close:hover,
         .close:focus {
             color: black;
@@ -45,23 +73,29 @@
 </head>
 
 <body>
-    <button id="getNumbers">Get Numbers</button>
-    <table id="numbers">
-        <tr>
-            <th>Number</th>
-            <th>Action</th>
-        </tr>
-    </table>
-    <input type="hidden" id="selectedNumber" value="">
-    <button id="provisionNumber">Provision Number</button>
-
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-        <!-- Modal content -->
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <p>Are you sure you want to provision the number <span id="modalNumber"></span>?</p>
-            <button id="confirmProvision">Confirm</button>
+    <div class="container">
+        <div class="header">
+            <h2>Launch an AI Phone Number in Seconds - Talk to a Customizable AI Today!</h2>
+        </div>
+        <p>Get the fastest setup experience on the market - no coding, no hassle. Create a phone number and connect to a tailored AI solution in mere seconds!</p>
+        <button id="getNumbers" class="button">Get Numbers</button>
+        <table id="numbers">
+            <tr>
+                <th>Number</th>
+                <th>Action</th>
+            </tr>
+        </table>
+        <input type="hidden" id="selectedNumber" value="">
+        <button id="provisionNumber" class="button">Provision Number</button>
+        <input type="text" id="instructions" placeholder="Enter instructions for AI">
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Are you sure you want to provision the number <span id="modalNumber"></span>?</p>
+                <button id="confirmProvision">Confirm</button>
+            </div>
         </div>
     </div>
 
