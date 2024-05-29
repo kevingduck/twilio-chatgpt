@@ -27,6 +27,7 @@ def setup_number():
 
     account_sid = os.getenv('TWILIO_ACCOUNT_SID')
     auth_token = os.getenv('TWILIO_AUTH_TOKEN')
+    voice_url = os.getenv('VOICE_URL') # Get the voice_url from environment variables
     client = Client(account_sid, auth_token)
 
     data = request.get_json()
@@ -34,7 +35,7 @@ def setup_number():
 
     # Use Twilio's API to purchase and configure the number
     client.incoming_phone_numbers.create(
-        voice_url='https://coldcallgenius.azurewebsites.net/twilio/twiml/start',
+        voice_url=voice_url,
         phone_number=number)
     return jsonify({'status': 'success'}), 200
 
