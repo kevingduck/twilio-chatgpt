@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Admin Page</title>
+	<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<h1>Admin | Instant AI Phone</h1>
+            <div class="user-email"><span id="user-email">testuser@gmail.com</span></div>
+		</div>
+		<div class="content">
+			<div class="left-section">
+				<h2>Manage Numbers</h2>
+				<table id="numbers">
+                    <tr>
+                        <th>Number</th>
+                        <th>AI Instructions</th>
+                        <th>Enabled</th>
+                    </tr>
+                    <!-- Numbers will be listed here -->
+                    <!-- Example row: -->
+                    <tr>
+                        <td>+18430184058</td>
+                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
+                        <td>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </td>
+                    </tr>
+                </table>
+			</div>
+			<div class="right-section">
+				<h2>Edit AI Instructions</h2>
+				<div class="selected-number"></div>
+				<textarea id="instructions" rows="9" cols="50" placeholder="Enter instructions..."></textarea>
+				<button id="save-instructions" class="button">Save Instructions</button>
+			</div>
+		</div>
+	</div>
+	<script src="script.js"></script>
+</body>
+</html>

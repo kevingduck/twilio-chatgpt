@@ -59,5 +59,9 @@ def provision_number():
     else:
         return jsonify({'status': 'error', 'message': 'Invalid request format'}), 400
     
+@app.route('/admin')
+def admin():
+    return render_template('admin.html')
+    
 if __name__ == '__main__':
     app.run(debug=True)
