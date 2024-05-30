@@ -91,6 +91,29 @@
             text-decoration: none;
             cursor: pointer;
         }
+
+        .content {
+            display: flex;
+        }
+
+        .left-section,
+        .right-section {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .right-section {
+            flex: 1;
+            padding: 20px;
+            display: none;
+            /* Add this line */
+        }
+
+        .selected-number {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 
@@ -102,27 +125,37 @@
         <h2>The fastest setup on the planet - no coding, no hassle.</h2>
         <h3>Set up a live, working phone number and connect to your
             customized AI in seconds!</h3>
-        <label>Area Code:</label>
-        <input type="text" id="areaCode" placeholder="Search by area code">
-        <button id="getNumbers" class="button">Get Available Phone Numbers</button>
-        <table id="numbers">
-            <tr>
-                <th></th>
-                <th></th>
-            </tr>
-        </table>
+        <div class="content">
+            <div class="left-section">
+                <label>Area Code:</label>
+                <input type="text" id="areaCode" placeholder="Search by area code">
+                <button id="getNumbers" class="button">Get Available Phone Numbers</button>
+                <table id="numbers">
+                    <tr>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </table>
+            </div>
+            <div class="right-section">
+                <div id="selectedNumberDisplay" class="selected-number"></div>
+                <textarea id="instructions" rows="9" cols="50"
+                    placeholder="Enter instructions for your AI. Example: 'You are a customer service agent for ZoomCo Enterprise. You answer questions about our product features, help troubleshoot technical issues, and provide friendly support to our valued customers. Greet each caller with a warm welcome, ask for their name and issue, and respond with empathy and expertise.'"></textarea><br />
+                <button id="provisionNumber" class="button">Set Up Phone Number</button>
+            </div>
+        </div>
+
+
         <input type="hidden" id="selectedNumber" value="">
-        <button id="provisionNumber" class="button">Set Up Phone Number</button>
+
         <!-- The Modal -->
         <div id="myModal" class="modal">
             <!-- Modal content -->
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <p>Are you sure you want to provision and set up the number <span id="modalNumber"></span>?</p>
-                <p>If yes, you will be able to call <span id="modalNumber"></span> and talk to your AI immediately. <br /> Bring
-                    your AI to life by giving it instructions below:</p>
-                <textarea id="instructions" rows="9" cols="50"
-                    placeholder="Enter instructions for your AI. Example: 'You are a customer service agent for ZoomCo Enterprise. You answer questions about our product features, help troubleshoot technical issues, and provide friendly support to our valued customers. Greet each caller with a warm welcome, ask for their name and issue, and respond with empathy and expertise.'"></textarea><br />
+                <h2>Are you sure you want to provision and set up the number <span id="modalNumber"></span>?</h2>
+                <h3>If yes, you will be able to call <span id="modalNumber"></span> and talk to your AI immediately.
+                </h3>
                 <button id="confirmProvision">Yes - Create Phone Number</button>
             </div>
         </div>
@@ -157,6 +190,10 @@
                                 row.classList.add('selected');
                                 // Set the value of the 'selectedNumber' input field
                                 document.getElementById('selectedNumber').value = number;
+                                // Update the display of the selected number
+                                document.getElementById('selectedNumberDisplay').textContent = number;
+                                // Show the right section
+                                document.querySelector('.right-section').style.display = 'block'; /* Add this line */
                             });
                             actionCell.appendChild(selectButton);
                             row.appendChild(actionCell);
