@@ -23,9 +23,10 @@
             </div>
             <div class="right-section">
                 <div id="selectedNumberDisplay" class="selected-number"></div>
-                <label for="instructions">AI Instructions:</label><br />
+                <h2 for="instructions">AI Instructions:</h2>
+                <label>Enter instructions for your AI. Example: 'You are a customer service agent for ZoomCo Enterprise. You answer questions about our product features, help troubleshoot technical issues, and provide friendly support to our valued customers. Greet each caller with a warm welcome, ask for their name and issue, and respond with empathy and expertise.'</label>
                 <textarea id="instructions" rows="9" cols="50"
-                    placeholder="Enter instructions for your AI. Example: 'You are a customer service agent for ZoomCo Enterprise. You answer questions about our product features, help troubleshoot technical issues, and provide friendly support to our valued customers. Greet each caller with a warm welcome, ask for their name and issue, and respond with empathy and expertise.'"></textarea><br />
+                    placeholder="Enter instructions ..."></textarea><br />
                 <button id="provisionNumber" class="button">Set Up Phone Number</button>
             </div>
         </div>
@@ -43,8 +44,8 @@
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <h2>Are you sure you want to provision and set up the number <span id="modalNumber"></span>?</h2>
-                <h3>If yes, you will be able to call <span id="modalNumber"></span> and talk to your AI immediately.
-                </h3>
+                <h3>If yes, you will be able to call <span id="modalNumber"></span> and talk to your AI immediately for free for the first 5 minutes.</h3>
+                <h3>You can subscribe to a plan after the first 5 minutes to continue using the number.</h3>
                 <button id="confirmProvision">Yes - Create Phone Number</button>
             </div>
         </div>
@@ -80,7 +81,7 @@
                                 // Set the value of the 'selectedNumber' input field
                                 document.getElementById('selectedNumber').value = number;
                                 // Update the display of the selected number
-                                document.getElementById('selectedNumberDisplay').textContent = number;
+                                document.getElementById('selectedNumberDisplay').textContent = "Your Number: " + number;
                                 // Show the right section
                                 document.querySelector('.right-section').style.display = 'block'; /* Add this line */
                             });
