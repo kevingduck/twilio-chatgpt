@@ -99,15 +99,16 @@
         <div class="header">
             <h2>Launch an AI Phone Number in Seconds | Talk to a Customizable AI Right Now</h2>
         </div>
-        <p>Create a phone number and connect to your
-            customized AI in seconds! <br />The fastest setup on the planet - no coding, no hassle.</p>
+        <h2>The fastest setup on the planet - no coding, no hassle.</h2>
+        <h3>Set up a live, working phone number and connect to your
+            customized AI in seconds!</h3>
         <label>Area Code:</label>
         <input type="text" id="areaCode" placeholder="Search by area code">
         <button id="getNumbers" class="button">Get Available Phone Numbers</button>
         <table id="numbers">
             <tr>
-                <th>Number</th>
-                <th>Action</th>
+                <th></th>
+                <th></th>
             </tr>
         </table>
         <input type="hidden" id="selectedNumber" value="">
@@ -118,7 +119,7 @@
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <p>Are you sure you want to provision and set up the number <span id="modalNumber"></span>?</p>
-                <p>If yes, you will be able to call <span id="modalNumber"></span> and talk to your AI. <br /> Bring
+                <p>If yes, you will be able to call <span id="modalNumber"></span> and talk to your AI immediately. <br /> Bring
                     your AI to life by giving it instructions below:</p>
                 <textarea id="instructions" rows="9" cols="50"
                     placeholder="Enter instructions for your AI. Example: 'You are a customer service agent for ZoomCo Enterprise. You answer questions about our product features, help troubleshoot technical issues, and provide friendly support to our valued customers. Greet each caller with a warm welcome, ask for their name and issue, and respond with empathy and expertise.'"></textarea><br />
@@ -139,7 +140,7 @@
                     .then(data => {
                         const table = document.getElementById('numbers');
                         // Clear the table
-                        table.innerHTML = '<tr><th>Number</th><th>Action</th></tr>';
+                        table.innerHTML = '<tr><th>Number</th><th></th></tr>';
                         // Add each number to the table
                         data.forEach(number => {
                             const row = document.createElement('tr');
