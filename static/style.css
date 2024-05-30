@@ -35,6 +35,14 @@ body {
     color: #000;
 }
 
+a {
+    color: inherit; /* This will make the link color the same as the text color */
+    text-decoration: underline; /* This will underline the link */
+}
+a:hover {
+    color: inherit; /* This will keep the link color the same when hovered */
+}
+
 .selected {
     background-color: #000;
     color: #FFD700;
@@ -210,4 +218,15 @@ input:checked + .slider:before {
 
 .slider.round:before {
     border-radius: 50%;
+}
+
+.inspo-section {
+    background-color: #000;
+    color: #FFD700;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #FFD700;
+}
+.inspo-section h2 {
+    margin-bottom: 10px;
 }

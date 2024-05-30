@@ -59,6 +59,17 @@ def provision_number():
     else:
         return jsonify({'status': 'error', 'message': 'Invalid request format'}), 400
     
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        # Handle login logic here
+        pass
+    return render_template('login.html')
+
+@app.route('/inspo')
+def inspo():
+    return render_template('inspo.html')
+    
 @app.route('/admin')
 def admin():
     return render_template('admin.html')
