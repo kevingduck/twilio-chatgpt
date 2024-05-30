@@ -129,41 +129,44 @@
 
     <script>
         document.getElementById('getNumbers').addEventListener('click', function () {
-            const areaCode = document.getElementById('areaCode').value;  // Get area code from input field
-            fetch(`/get_numbers/${areaCode}`, {
-                method: 'GET',
-                headers: { 'Content-Type': 'application/json' },
-            })
-                .then(response => response.json())
-                .then(data => {
-                    const table = document.getElementById('numbers');
-                    // Clear the table
-                    table.innerHTML = '<tr><th>Number</th><th>Action</th></tr>';
-                    // Add each number to the table
-                    data.forEach(number => {
-                        const row = document.createElement('tr');
-                        const numberCell = document.createElement('td');
-                        numberCell.textContent = number;
-                        row.appendChild(numberCell);
-                        const actionCell = document.createElement('td');
-                        const selectButton = document.createElement('button');
-                        selectButton.textContent = 'Select';
-                        selectButton.addEventListener('click', function () {
-                            // Remove 'selected' class from all rows
-                            document.querySelectorAll('#numbers tr').forEach(row => row.classList.remove('selected'));
-                            // Add 'selected' class to the current row
-                            row.classList.add('selected');
-                            // Set the value of the 'selectedNumber' input field
-                            document.getElementById('selectedNumber').value = number;
-                        });
-                        actionCell.appendChild(selectButton);
-                        row.appendChild(actionCell);
-                        table.appendChild(row);
-                    });
+            const areaCode = document.getElementById('areaCode').value;
+            if (areaCode.length === 3) { // Check if at least 3 numbers have been entered
+                fetch(`/get_numbers/${areaCode}`, {
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' },
                 })
-                .catch(error => console.error('Error:', error));
+                    .then(response => response.json())
+                    .then(data => {
+                        const table = document.getElementById('numbers');
+                        // Clear the table
+                        table.innerHTML = '<tr><th>Number</th><th>Action</th></tr>';
+                        // Add each number to the table
+                        data.forEach(number => {
+                            const row = document.createElement('tr');
+                            const numberCell = document.createElement('td');
+                            numberCell.textContent = number;
+                            row.appendChild(numberCell);
+                            const actionCell = document.createElement('td');
+                            const selectButton = document.createElement('button');
+                            selectButton.textContent = 'Select';
+                            selectButton.addEventListener('click', function () {
+                                // Remove 'selected' class from all rows
+                                document.querySelectorAll('#numbers tr').forEach(row => row.classList.remove('selected'));
+                                // Add 'selected' class to the current row
+                                row.classList.add('selected');
+                                // Set the value of the 'selectedNumber' input field
+                                document.getElementById('selectedNumber').value = number;
+                            });
+                            actionCell.appendChild(selectButton);
+                            row.appendChild(actionCell);
+                            table.appendChild(row);
+                        });
+                    })
+                    .catch(error => console.error('Error:', error));
+            } else {
+                alert("Please enter an area code.");
+            }
         });
-
         // Get the modal
         var modal = document.getElementById("myModal");
 
