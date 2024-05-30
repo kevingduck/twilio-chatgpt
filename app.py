@@ -9,15 +9,15 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
-@app.route('/get_numbers')
-def get_numbers():
+@app.route('/get_numbers/<area_code>')
+def get_numbers(area_code):
     load_dotenv()
 
     account_sid = os.getenv('TWILIO_ACCOUNT_SID')
     auth_token = os.getenv('TWILIO_AUTH_TOKEN')
     client = Client(account_sid, auth_token)
 
-    numbers = client.available_phone_numbers('US').local.list(limit=10)
+    numbers = client.available_phone_numbers('US').local.list(area_code=area_code, limit=10)
     return jsonify([str(number.phone_number) for number in numbers])
 
 
@@ -29,6 +29,8 @@ def setup_number():
     auth_token = os.getenv('TWILIO_AUTH_TOKEN')
     voice_url = os.getenv('VOICE_URL') # Get the voice_url from environment variables
     client = Client(account_sid, auth_token)
+
+    print(request.get_json())
 
     data = request.get_json()
     number = data['number']

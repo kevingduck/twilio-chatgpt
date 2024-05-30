@@ -101,6 +101,8 @@
         </div>
         <p>Create a phone number and connect to your
             customized AI in seconds! <br />The fastest setup on the planet - no coding, no hassle.</p>
+        <label>Area Code:</label>
+        <input type="text" id="areaCode" placeholder="Search by area code">
         <button id="getNumbers" class="button">Get Available Phone Numbers</button>
         <table id="numbers">
             <tr>
@@ -116,8 +118,10 @@
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <p>Are you sure you want to provision and set up the number <span id="modalNumber"></span>?</p>
-                <p>If yes, you will be able to call <span id="modalNumber"></span> and talk to your AI. <br/> Bring your AI to life by giving it instructions below:</p>
-                <textarea id="instructions" rows="9" cols="50" placeholder="Enter instructions for your AI. Example: 'You are a customer service agent for ZoomCo Enterprise. You answer questions about our product features, help troubleshoot technical issues, and provide friendly support to our valued customers. Greet each caller with a warm welcome, ask for their name and issue, and respond with empathy and expertise.'"></textarea><br/>
+                <p>If yes, you will be able to call <span id="modalNumber"></span> and talk to your AI. <br /> Bring
+                    your AI to life by giving it instructions below:</p>
+                <textarea id="instructions" rows="9" cols="50"
+                    placeholder="Enter instructions for your AI. Example: 'You are a customer service agent for ZoomCo Enterprise. You answer questions about our product features, help troubleshoot technical issues, and provide friendly support to our valued customers. Greet each caller with a warm welcome, ask for their name and issue, and respond with empathy and expertise.'"></textarea><br />
                 <button id="confirmProvision">Yes - Create Phone Number</button>
             </div>
         </div>
@@ -125,7 +129,11 @@
 
     <script>
         document.getElementById('getNumbers').addEventListener('click', function () {
-            fetch('/get_numbers')
+            const areaCode = document.getElementById('areaCode').value;  // Get area code from input field
+            fetch(`/get_numbers/${areaCode}`, {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' },
+            })
                 .then(response => response.json())
                 .then(data => {
                     const table = document.getElementById('numbers');
@@ -145,6 +153,7 @@
                             document.querySelectorAll('#numbers tr').forEach(row => row.classList.remove('selected'));
                             // Add 'selected' class to the current row
                             row.classList.add('selected');
+                            // Set the value of the 'selectedNumber' input field
                             document.getElementById('selectedNumber').value = number;
                         });
                         actionCell.appendChild(selectButton);
